@@ -39,7 +39,7 @@
 | Estimated Total Size (MB) | -- | -- | 1708.45 |
 ## MaskGen
 
-### CLIP Encoder Transformer 
+## CLIP Encoder Transformer 
 
 #### Total params: 85,054,464
 #### Trainable params: 0
