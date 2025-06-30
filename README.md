@@ -11,14 +11,14 @@
 | Layer Name | Depth | Output Size | Parameter Count |
 |------------|-------|-------------|-----------------|
 | TATiTok | -- | [1, 3, 256, 256] | 24,576 |
-| TiTokEncoder | 1-1 | [1, 32, 1, 32] | 222,720 |
+| **TiTokEncoder** | 1-1 | [1, 32, 1, 32] | 222,720 |
 | Conv2d | 2-1 | [1, 768, 16, 16] | 590,592 |
 | LayerNorm | 2-2 | [1, 289, 768] | 1,536 |
 | ModuleList | 2-3 | -- | -- |
 | ResidualAttentionBlock (12 layers) | 3-1 to 3-12 | [289, 1, 768] | 7,087,872 each |
 | LayerNorm | 2-4 | [1, 32, 768] | 1,536 |
 | Conv2d | 2-5 | [1, 32, 32, 1] | 24,608 |
-| TATiTokDecoder | 1-2 | [1, 3, 256, 256] | 376,832 |
+| **TATiTokDecoder** | 1-2 | [1, 3, 256, 256] | 376,832 |
 | Linear | 2-6 | [1, 32, 1024] | 17,408 |
 | Linear | 2-7 | [1, 77, 1024] | 787,456 |
 | LayerNorm | 2-8 | [1, 366, 1024] | 2,048 |
@@ -38,3 +38,25 @@
 | Parameters Size (MB) | -- | -- | 1041.87 |
 | Estimated Total Size (MB) | -- | -- | 1708.45 |
 ## MaskGen
+
+### CLIP Encoder Transformer 
+
+#### Total params: 85,054,464
+#### Trainable params: 0
+#### Non-trainable params: 85,054,464
+#### Total mult-adds (Units.MEGABYTES): 56.71
+
+#### Input size (MB): 0.24
+#### Forward/backward pass size (MB): 39.74
+#### Params size (MB): 226.82
+#### Estimated Total Size (MB): 266.80
+| Layer Name | Depth | Output Size | Parameter Count |
+|------------|-------|-------------|-----------------|
+| Transformer| ---  |[77, 1, 768]|  --- |
+|ModuleList: 1-1|--|--|--|
+|12 blocks of this ResidualAttentionBlock| 2-1 | [1, 77, 768] | -- |
+| LayerNorm | 3-1 | [1, 77, 768] | 1,536 |
+| MultiheadAttention| 3-2 | [1, 77, 768] | 2,362,368 |
+| Identity| 3-3 | [1, 77, 768]| -- |
+| LayerNorm | 3-4 | [1, 77, 768]  | 1,536 |
+| Sequential | 3-5 | [1, 77, 768] | 4,722,432 |
